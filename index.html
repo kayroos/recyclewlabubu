@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cookinwkayra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-pink: #f8c8dc;
+      --deep-pink: #880e4f;
+      --accent-pink: #c2185b;
+      --text-color: #3d1a26;
+      --light-bg: #fff;
+      --card-bg: #fff;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8c8dc 0%, #fff 100%);
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 32px 0 0 0;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+    .site-title {
+      font-family: 'Playball', cursive;
+      font-size: 2.7rem;
+      color: var(--deep-pink);
+      letter-spacing: 2px;
+    }
+    .hero-content {
+      text-align: center;
+      margin: 18px 0 32px 0;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      font-weight: 500;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section-title {
+      text-align: left;
+      font-size: 2rem;
+      color: var(--deep-pink);
+      margin: 40px 0 24px 0;
+      font-weight: 600;
+    }
+    .search-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: var(--main-pink);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 14px 16px;
+      border: 2px solid var(--accent-pink);
+      border-radius: 10px;
+      background: #fff;
+      font-size: 1rem;
+      color: var(--deep-pink);
+    }
+    .search-box button {
+      padding: 12px 30px;
+      background: var(--accent-pink);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .search-box button:hover {
+      background: #ad1457;
+      transform: scale(1.03);
+    }
+    #sonuc {
+      margin-left: 16px;
+      font-style: italic;
+      color: var(--deep-pink);
+    }
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin: 0 auto 60px auto;
+    }
+    .info-cards .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+      min-height: 420px;
+    }
+    .info-cards .card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .info-cards img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid #f8c8dc;
+    }
+    .info-cards .card-text {
+      padding: 24px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .info-cards .card-text h3 {
+      color: var(--deep-pink);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    .info-cards .card-text p {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .step {
+      background: #fff0f6;
+      padding: 32px 18px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    .step:hover {
+      transform: translateY(-5px);
+    }
+    .step h3 {
+      color: var(--deep-pink);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    .about {
+      background: var(--main-pink);
+      padding: 40px 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+    }
+    .about p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #4a0d2b;
+    }
+    /* Ekibimiz bölümü için eklenen CSS */
+    .team-section {
+      margin: 48px 0 32px 0;
+      text-align: center;
+    }
+    .team-section h2 {
+      font-size: 2rem;
+      color: var(--deep-pink);
+      margin-bottom: 8px;
+    }
+    .team-section h3 {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 32px;
+    }
+    .profile-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+    }
+    .profile-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 140px;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      margin-bottom: 10px;
+    }
+    .profile-name {
+      font-size: 1rem;
+      color: var(--deep-pink);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    /* Fiyatlandırma bölümü için eklenen CSS */
+    .pricing-section {
+      margin: 48px 0 32px 0;
+      text-align: center;
+    }
+    .pricing-section .section-title {
+      margin-bottom: 8px;
+    }
+    .pricing-subtitle {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 32px;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+    }
+    .pricing-card {
+      background: #fff0f6;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      padding: 32px 24px;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+    .pricing-card h2 {
+      color: var(--deep-pink);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pricing-card li {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+    /* Sık Sorulan Sorular bölümü için eklenen CSS */
+    .faq-section {
+      margin: 48px 0 32px 0;
+      text-align: center;
+    }
+    .faq-section h2 {
+      font-size: 2rem;
+      color: var(--deep-pink);
+      margin-bottom: 8px;
+    }
+    .faq-section h3 {
+      font-size: 1.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 32px;
+    }
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .faq-list h3 {
+      font-size: 1.1rem;
+      color: var(--deep-pink);
+      margin-top: 24px;
+      margin-bottom: 6px;
+    }
+    .faq-list p {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+    /* Bize Ulaşın bölümü ve footer için eklenen CSS */
+    .contact-section {
+      margin: 48px 0 32px 0;
+      padding: 0 0 32px 0;
+    }
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 220px;
+    }
+    .contact-info h3 {
+      color: var(--deep-pink);
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .contact-info p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+    .contact-info a {
+      color: var(--accent-pink);
+      font-weight: 600;
+    }
+    .contact-map {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+    }
+    .footer-list li a {
+      color: var(--deep-pink);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-list li a:hover {
+      color: var(--accent-pink);
+    }
+    .footer-contact {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+    .footer-contact a {
+      color: var(--accent-pink);
+      font-weight: 600;
+    }
+    .footer-copyright {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #888;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) {
+      .container { padding: 0 8px; }
+      .info-cards { gap: 18px; }
+      .steps { gap: 12px; }
+      .card-container { gap: 16px; }
+      .pricing-card { width: 220px; padding: 24px 12px; }
+      .contact-flex { gap: 16px; }
+    }
+    @media (max-width: 600px) {
+      .topbar { flex-direction: column; gap: 8px; }
+      .site-title { font-size: 2rem; }
+      .info-cards img { height: 140px; }
+      .info-cards .card { min-height: 320px; }
+      .steps { grid-template-columns: 1fr; }
+      .profile-grid { gap: 16px; }
+      .profile-item { width: 100px; }
+      .profile-img { width: 80px; height: 80px; }
+      .card-container { flex-direction: column; align-items: center; }
+      .pricing-card { width: 90%; margin-bottom: 18px; }
+      .faq-list { padding: 0 8px; }
+      .contact-flex { flex-direction: column; gap: 18px; }
+      .contact-map img { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGO ve HERO -->
+  <div class="topbar">
+    <img class="logo" src="sa.png" alt="cookinwkayra logo">
+    <span class="site-title">cookinwkayra</span>
+  </div>
+  <div class="hero-content">
+    <p>Tekstil ürünlerine yeniden hayat veriyoruz ♻️</p>
+  </div>
+  <div class="container">
+    <h2 class="section-title">Ne arıyorsunuz?</h2>
+    <section class="search-box">
+      <input type="text" id="searchInput" placeholder="Örn: geri dönüştürülmüş çanta">
+      <button onclick="aramaYap()">Ara</button>
+      <span id="sonuc"></span>
+    </section>
+    <h2 class="section-title">Nasıl Çalışır?</h2>
+    <section class="steps">
+      <div class="step">
+        <h3>1. Topla</h3>
+        <p>Kullanmadığın giysileri bizimle paylaş.</p>
+      </div>
+      <div class="step">
+        <h3>2. Dönüştür</h3>
+        <p>Giysiler uzmanlar tarafından geri dönüştürülür.</p>
+      </div>
+      <div class="step">
+        <h3>3. Tekrar Kullan</h3>
+        <p>Yeni, sürdürülebilir ürünler olarak hayat bulurlar.</p>
+      </div>
+    </section>
+    <!-- BİLGİ KARTLARI -->
+    <h2 class="section-title">Neden Tekstil Geri Dönüşümü?</h2>
+    <section class="info-cards">
+      <div class="card">
+        <img src="sustainability moodboard.jpg" alt="Sürdürülebilir Moda Moodboard" style="width:100%;height:180px;object-fit:cover;">
+        <div class="card-text">
+          <h3>Sürdürülebilir Moda</h3>
+          <p>
+            Moda sadece kıyafetlerden ibaret değildir; arkasında emek, insan hikâyeleri ve doğaya etkiler vardır. 
+            Daha etik üretim ve tüketimle, sürdürülebilir bir geleceğe katkı sağlanır.
+          </p>
+          <p style="margin-top:12px;color:#c2185b;font-weight:500;">Çözüm: Sürdürülebilir moda için geri dönüştürülmüş materyaller kullanmak, etik üretim süreçlerini benimsemek ve bilinçli tüketim alışkanlıkları geliştirmek gerekir. Böylece hem çevreye hem topluma katkı sağlanır.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://md.teyit.org/2024/12/tekstilde-geri-donusum-cozum-olarak-sunulan-yeni-bir-sorun-mu.webp" alt="Tekstil Atıkları">
+        <div class="card-text">
+          <h3>Tekstil Atıkları</h3>
+          <p>
+            Her yıl milyonlarca ton tekstil atığı çöplere gidiyor. 
+            Halbuki bu atıklar geri dönüştürüldüğünde yeni ürünlere dönüşebilir ve çevre kirliliği azaltılabilir.
+          </p>
+          <p style="margin-top:12px;color:#c2185b;font-weight:500;">Çözüm: Tekstil atıklarını azaltmak için giysileri yeniden kullanmak, bağışlamak veya geri dönüşüm noktalarına ulaştırmak önemlidir. Atıkların ayrıştırılması ve geri dönüştürülmesi, çevre kirliliğini önler ve kaynakların verimli kullanılmasını sağlar.</p>
+        </div>
+      </div>
+    </section>
+    <section class="about">
+      <h2 class="section-title">Hakkımızda</h2>
+      <p>
+        cookinwkayra, çevreye duyarlı, döngüsel bir moda anlayışını yaygınlaştırmayı hedefler. 
+        Tekstil atıklarını geri kazanarak hem doğal kaynakları korur hem de sürdürülebilir bir gelecek için farkındalık yaratır. 
+        Her bağış, yeni bir başlangıç olabilir.
+      </p>
+    </section>
+    <!-- Ekibimiz bölümü -->
+    <section class="team-section">
+      <h2 class="section-title">Ekibimiz</h2>
+      <h3>Birlikte sürdürülebilir geleceğe!</h3>
+      <div class="profile-grid">
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elif Kayra Çelebi">
+          <div class="profile-name">Elif Kayra Çelebi</div>
+        </div>
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/men/15.jpg" alt="Selahattin Tacettin">
+          <div class="profile-name">Selahattin Tacettin</div>
+        </div>
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Kayahan Ünal">
+          <div class="profile-name">Kayahan Ünal</div>
+        </div>
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/women/33.jpg" alt="Merve Sena Çakır">
+          <div class="profile-name">Merve Sena Çakır</div>
+        </div>
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Damla Nur Türkmen">
+          <div class="profile-name">Damla Nur Türkmen</div>
+        </div>
+        <div class="profile-item">
+          <img class="profile-img" src="https://randomuser.me/api/portraits/women/56.jpg" alt="Hiranur Teber">
+          <div class="profile-name">Hiranur Teber</div>
+        </div>
+      </div>
+    </section>
+    <!-- Fiyatlandırma bölümü -->
+    <section class="pricing-section">
+      <h2 class="section-title">Fiyatlandırma</h2>
+      <h3 class="pricing-subtitle">Hizmetlerimiz için uygun paketler</h3>
+      <div class="card-container">
+        <div class="pricing-card">
+          <h2>Başlangıç</h2>
+          <ul>
+            <li>Temel geri dönüşüm hizmeti</li>
+            <li>1 ürün için dönüşüm</li>
+            <li>Standart teslimat</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <h2>Standart</h2>
+          <ul>
+            <li>Genişletilmiş geri dönüşüm</li>
+            <li>3 ürün için dönüşüm</li>
+            <li>Hızlı teslimat</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <h2>Premium</h2>
+          <ul>
+            <li>Kapsamlı geri dönüşüm</li>
+            <li>5+ ürün için dönüşüm</li>
+            <li>Özel danışmanlık</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Sık Sorulan Sorular bölümü -->
+    <section class="faq-section">
+      <h2>Sık Sorulan Sorular</h2>
+      <h3>Merak ettikleriniz ve cevaplar</h3>
+      <div class="faq-list">
+        <h3>Geri dönüşüm için hangi ürünleri kabul ediyorsunuz?</h3>
+        <p>Her türlü tekstil ürünü (giysi, çanta, aksesuar vb.) kabul edilmektedir.</p>
+        <h3>Ürünlerimi nasıl gönderebilirim?</h3>
+        <p>Web sitemiz üzerinden başvuru yaparak veya anlaşmalı kargo ile ürünlerinizi gönderebilirsiniz.</p>
+        <h3>Geri dönüşüm süreci ne kadar sürüyor?</h3>
+        <p>Ürünlerin türüne ve miktarına göre genellikle 1-2 hafta içinde tamamlanır.</p>
+        <h3>Yeni ürünler nasıl teslim ediliyor?</h3>
+        <p>Dönüştürülen ürünler adresinize kargo ile gönderilmektedir.</p>
+        <h3>Fiyatlandırma nasıl belirleniyor?</h3>
+        <p>Seçtiğiniz paket ve ürün sayısına göre fiyatlandırma yapılır. Detaylar için fiyatlandırma bölümünü inceleyebilirsiniz.</p>
+      </div>
+    </section>
+    <!-- Bize Ulaşın bölümü -->
+    <section class="contact-section">
+      <div class="contact-flex">
+        <div class="contact-info">
+          <h3>Bize Ulaşın</h3>
+          <p>Her türlü soru, öneri ve iş birliği için bize mail gönderebilirsiniz.<br>
+          <strong>E-posta:</strong> <a href="mailto:cookinwkayra@gmail.com">cookinwkayra@gmail.com</a></p>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12041.999999999998!2d28.9784!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzI5LjUiTiAyOMKwNTgnNDIuOCJF!5e0!3m2!1str!2str!4v1660000000000!5m2!1str!2str" width="100%" height="180" style="border-radius:12px;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <ul class="footer-list">
+      <li><a href="#about">Hakkımızda</a></li>
+      <li><a href="#team">Ekibimiz</a></li>
+      <li><a href="#pricing">Fiyatlandırma</a></li>
+      <li><a href="#faq">Sık Sorulan Sorular</a></li>
+      <li><a href="#contact">Bize Ulaşın</a></li>
+    </ul>
+    <div class="footer-contact">
+      <span>E-posta: <a href="mailto:cookinwkayra@gmail.com">cookinwkayra@gmail.com</a></span>
+    </div>
+    <div class="footer-copyright">
+      &copy; 2025 cookinwkayra | Tüm hakları saklıdır.
+    </div>
+  </footer>
+  <script>
+    function aramaYap() {
+      const aranan = document.getElementById("searchInput").value.trim();
+      const sonuc = document.getElementById("sonuc");
+      if (aranan === "") {
+        sonuc.textContent = "Lütfen bir kelime girin.";
+      } else {
+        sonuc.textContent = `"${aranan}" için sonuçlar gösteriliyor... (Demo)`;
+      }
+    }
+  </script>
+</body>
+</html>
